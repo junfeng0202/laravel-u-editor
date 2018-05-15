@@ -87,6 +87,12 @@ class Controller extends BaseController
                         $config['imageManagerListSize'],
                         $config['imageManagerListPath'],
                         $request))->getList();
+                }else if (config('UEditorUpload.core.mode') == 'qcloud') {
+                    $result = with(new ListsQCloud(
+                        $config['imageManagerAllowFiles'],
+                        $config['imageManagerListSize'],
+                        $config['imageManagerListPath'],
+                        $request))->getList();
                 }
 
 
@@ -101,6 +107,12 @@ class Controller extends BaseController
                         $request))->getList();
                 }else if (config('UEditorUpload.core.mode') == 'qiniu') {
                     $result = with(new ListsQiniu(
+                        $config['fileManagerAllowFiles'],
+                        $config['fileManagerListSize'],
+                        $config['fileManagerListPath'],
+                        $request))->getList();
+                }else if (config('UEditorUpload.core.mode') == 'qcloud') {
+                    $result = with(new ListsQCloud(
                         $config['fileManagerAllowFiles'],
                         $config['fileManagerListSize'],
                         $config['fileManagerListPath'],
@@ -120,7 +132,7 @@ class Controller extends BaseController
                     'fieldName' => $config['catcherFieldName'],
                 );
 
-                $sources = \Input::get($upConfig['fieldName']);
+                $sources =$request->get($upConfig['fieldName']);
                 $list = [];
                 foreach ($sources as $imgUrl) {
                     $upConfig['imgUrl'] = $imgUrl;

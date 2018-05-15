@@ -10,12 +10,14 @@ use Stevenyangecho\UEditor\Uploader\Upload;
  */
 class UploadCatch  extends Upload{
     use UploadQiniu;
+	use UploadQColud;
 
     public function doUpload()
     {
 
-        $imgUrl = strtolower(str_replace("&amp;", "&", $this->config['imgUrl']));
-        //http开头验证
+        $imgUrl = strtolower(str_replace("&amp;", "&", $this->config['imgUrl']));//dd($imgUrl);
+
+	    //http开头验证
         if (strpos($imgUrl, "http") !== 0) {
             $this->stateInfo = $this->getStateInfo("ERROR_HTTP_LINK");
             return false;
@@ -38,7 +40,8 @@ class UploadCatch  extends Upload{
         //打开输出缓冲区并获取远程图片
         ob_start();
         $context = stream_context_create(
-            array('http' => array(
+            array(
+            	'http' => array(
                 'follow_location' => false // don't follow redirects
             ))
         );
@@ -90,6 +93,10 @@ class UploadCatch  extends Upload{
         }else if(config('UEditorUpload.core.mode')=='qiniu'){
 
             return $this->uploadQiniu($this->filePath,$img);
+
+        }else if(config('UEditorUpload.core.mode')=='qcloud'){
+
+            return $this->uploadQcloud($this->filePath,$img,'remote');
 
         }else{
             $this->stateInfo = $this->getStateInfo("ERROR_UNKNOWN_MODE");

@@ -10,7 +10,7 @@ use Stevenyangecho\UEditor\Uploader\Upload;
 class UploadScrawl extends Upload
 {
     use UploadQiniu;
-
+	use UploadQColud;
 
     public function doUpload()
     {
@@ -66,6 +66,11 @@ class UploadScrawl extends Upload
 
 
             return $this->uploadQiniu($this->filePath,$img);
+
+        }else if(config('UEditorUpload.core.mode')=='qcloud'){
+
+
+            return $this->uploadQcloud($this->filePath,$img);
 
         }else{
             $this->stateInfo = $this->getStateInfo("ERROR_UNKNOWN_MODE");

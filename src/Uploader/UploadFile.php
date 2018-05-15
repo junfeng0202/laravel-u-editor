@@ -13,6 +13,7 @@ use Stevenyangecho\UEditor\Uploader\Upload;
  */
 class UploadFile  extends Upload{
     use UploadQiniu;
+    use UploadQColud;
     public function doUpload()
     {
 
@@ -69,6 +70,11 @@ class UploadFile  extends Upload{
 
             $content=file_get_contents($this->file->getPathname());
             return $this->uploadQiniu($this->filePath,$content);
+
+        }else if(config('UEditorUpload.core.mode')=='qcloud'){
+
+            $content=file_get_contents($this->file->getPathname());
+            return $this->uploadQCloud($this->filePath,$content);
 
         }else{
             $this->stateInfo = $this->getStateInfo("ERROR_UNKNOWN_MODE");

@@ -30,7 +30,16 @@ return [
             'bucket'=>'',
             'url'=>'http://xxx.clouddn.com',//七牛分配的CDN域名,注意带上http://
 
-        ]
+        ],
+	    //腾讯云配置,若mode='qcloud',以下为必填.
+	    'qcloud'=>[
+		    'secretId'=>'',
+		    'secretKey'=>'',
+		    'bucket'=>'',
+		    'region' => '',   // bucket所属地域：华北 'tj' 华东 'sh' 华南 'gz'
+		    'url'=>'',  //腾讯云分配的CDN域名,注意带上http://
+
+	    ]
     ],
     /**
      * 和原 UEditor /php/config.json 配置完全相同
