@@ -1,17 +1,19 @@
 {
-  "name": "hotfeng/laravel-u-editor",
-  "description": "UEditor for laravel5.",
+  "name": "stevenyangecho/laravel-u-editor",
+  "description": "UEditor for laravel5. Support i18n. UEditor is a Rich Text Web Editor From Baidu.",
   "keywords": [
     "laravel",
     "ueditor",
     "laravel-u-editor",
-    "laravel5 web text editor"
+    "laravel5 web text editor",
+    "stevenyangecho",
+    "steven yang"
   ],
   "license": "MIT",
   "authors": [
     {
-      "name": "hotFeng",
-      "email": ""
+      "name": "Steven Yang",
+      "email": "yqmking@163.com"
     }
   ],
 
